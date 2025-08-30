@@ -26,4 +26,13 @@ def book(request):
 def menu(request):
     menu_data = Menu.objects.all()
     context = {'menu': menu_data}
-    return render(request, 'menu.html', {context})
+    return render(request, 'menu.html', context)
+
+
+
+def display_menu_item(request, pk=None):
+    if pk:
+        menu_item = Menu.objects.get(id=pk)
+    else:
+        menu_item = Menu.objects.all()
+    return render(request, 'menu_item.html', {'menu_item': menu_item})
